@@ -1,0 +1,28 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="pageStyle.css">
+</head>
+
+<body>
+    <select id="languageId">
+        <option value="engLang">English</option>
+        <option value="rusLang">Russian</option>
+        <option value="armLang">Armenian</option>
+    </select>
+
+    <div class="login-page">
+        <div class="form">
+            <form id="loginform">
+                <input type="text" id="loginName" data-language="userName" placeholder="Username or Email" />
+                <input type="password" id="loginPasswprd" data-language="password" placeholder="Password" />
+                <button type="button" id="loginButtonId" data-language="logIn">log In</button>
+                <p class="message"> Not Registered? <a href=registrationPage.html> Registration</a></p>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="LoginRegistrationPage.js"></script>
+</body>
+
+</html>

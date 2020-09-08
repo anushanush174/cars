@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="pageStyle.css">
+</head>
+
+<body name="body">
+    <div id=searchId>
+        <form id="searchFormId">
+            <input type="text" id="searchInputId" placeholder="Type to search" value=""></input>
+            <button type="button" id="searchButtonId" onclick="searchIntoTable()">Search</button>
+        </form>
+    </div>
+    <div id="divAddCarId">
+        <form id="formAddCar">
+            <input type="text" id="model" placeholder="Model" value=""></input>
+            <input type="text" id="brand" placeholder="Brand" value=""></input>
+            <input type="number" id="date" placeholder="Date" value=""></input>
+            <br>
+            <input type="number" id="horsepower" placeholder="Horsepower" value=""></input>
+            <input type="text" id="transmission" placeholder="Transmission" value=""></input>
+            <input type="text" id="clas" placeholder="Class" value=""></input>
+            <br>
+            <input type="button" value="CREATE" onclick="addRows()"></input>
+        </form>
+
+        <form id="formEditCarID">
+            <input type="text" id="modelEdit" placeholder="Model" value=""></input>
+            <input type="text" id="brandEdit" placeholder="Brand" value=""></input>
+            <input type="number" id="dateEdit" placeholder="Date" value=""></input>
+            <br>
+            <input type="number" id="horsepowerEdit" placeholder="Horsepower" value=""></input>
+            <input type="text" id="transmissionEdit" placeholder="Transmission" value=""></input>
+            <input type="text" id="clasEdit" placeholder="Class" value=""></input>
+            <br>
+            <input type="button" id="editButtonId" value="EDIT" onclick="saveEditedValues()"></input>
+        </form>
+    </div>
+    <script src="./cars.js"></script>
+    <script src="./carsTableList.js"></script>
+</body>
+
+</html>
