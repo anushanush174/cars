@@ -20,7 +20,7 @@ table.setAttribute("id", "table");
 const notesOnPage = 10;
 let car = JSON.parse(localStorage.getItem("carList"));
 let ul;
-const pageStart = 0;
+let pageStart = 0;
 let pageEnd = pageStart + notesOnPage;
 
 let model;
@@ -42,7 +42,7 @@ function createTable(cars) {
             th.setAttribute("draggable", "true");
             th.setAttribute("ondragover", "onDragOver()");
             th.setAttribute("ondrop", "onDrop(event)");
-            th.setAttribute("ondragstart", "onDragStart(${i}, event)");
+            th.setAttribute("ondragstart", `onDragStart(${i}, event)`);
         } else if (i < carModel.length - 1) {
             th.setAttribute("onclick", "createRow()");
         }
@@ -132,7 +132,6 @@ function deleteRows() {
                 let index = this.parentNode.rowIndex;
                 table.deleteRow(index);
                 car.splice(index - 1, 1);
-
                 localStorage.setItem("carList", JSON.stringify(car));
                 // table.innerHTML = "";
                 // createTable(car);
@@ -209,7 +208,7 @@ function editRows(data, position) {
     transmission = document.getElementById("transmissionEdit");
     clas = document.getElementById("clasEdit");
     editButton = document.getElementById("editButtonId");
-    editButton.setAttribute("onclick", "saveEditedValues(${position})");
+    editButton.setAttribute("onclick", `saveEditedValues(${position})`);
 
     model.value = data.Model;
     brand.value = data.Brand;
@@ -239,13 +238,12 @@ function searchIntoTable() {
     let searchInput = document.getElementById("searchInputId")
 
     let filteredCarList = car.filter(item => {
-        console.log(item)
-
-        for (let obj in car) {
-            car[obj].match(searchInput.value)
+        for (let obj in item) {
+            if(item[obj].toLowerCase().match(searchInput.value.toLowerCase())){
+                return true
+            }
         }
     })
-
-    localStorage.setItem("carList", JSON.stringify(filteredCarList))
-    createTable()
+    table.innerHTML = "";
+    createTable(filteredCarList.slice(pageStart, pageEnd))
 }

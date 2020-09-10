@@ -1,8 +1,13 @@
 <html lang="en">
 
 <head>
+    <!-- <link rel="shortcut icon" href=""> -->
     <meta charset="UTF-8">
     <link rel="stylesheet" href="pageStyle.css">
+    <!-- <meta name="google-signin-scope" content="profile email"> -->
+    <meta name="google-signin-client_id"
+        content="85866626897-u8hlkfg807nav7695e6bu0cuibtmcdqq.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -19,10 +24,28 @@
                 <input type="password" id="loginPasswprd" data-language="password" placeholder="Password" />
                 <button type="button" id="loginButtonId" data-language="logIn">log In</button>
                 <p class="message"> Not Registered? <a href=registrationPage.html> Registration</a></p>
+                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <div id="content"></div>
             </form>
         </div>
     </div>
+
     <script type="module" src="LoginRegistrationPage.js"></script>
+
+    <script>
+        function onSignIn(googleUser) {
+            let profile = googleUser.getBasicProfile();
+            let element = document.querySelector('#content')
+            element.innerText = profile.getName();
+            let image = document.createElement('img')
+            image.setAttribute('src', profile.getImageUrl())
+            element.append(image)
+            window.location.assign('./mainPage.html')
+        }
+
+        // http://localhost:5500/project/loginPage.html
+    </script>
+
 </body>
 
 </html>

@@ -40,7 +40,7 @@ function registerButtonClick() {
 
     if (userName.length > 0 && userEmail.length > 0) {
         if (password.length < passwordLength || rePassword.length < passwordLength) {
-            alert("Password must be greater than ${passwordLength} !");
+            alert(`Password must be greater than ${passwordLength} !`);
         } else {
             if (password !== rePassword) {
                 alert("Incorrect password!");
@@ -107,3 +107,4 @@ function getSelectedLanguages(val) {
         })
     })
 }
+

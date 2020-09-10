@@ -2,6 +2,8 @@
 
 <head>
     <link rel="stylesheet" href="pageStyle.css">
+    <meta name="google-signin-client_id" content="85866626897-u8hlkfg807nav7695e6bu0cuibtmcdqq.apps.googleusercontent.com">
+
 </head>
 
 <body>
@@ -10,14 +12,31 @@
         <br>
         <input type="button" value="Add Car"></input>
     </div>
-    <div id="right"></div>
-
+  
     <script>
+
         function onclickToHomePage() {
             location.href = "homePage.html"
         }
 
+        function signOut() {
+            let auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+            window.location.assign('./loginPage.html')
+        }
+
+        function onLoad() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
+            });
+        }
+       // http://localhost:5500/project/mainPage.html
+
     </script>
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 
 </html>
