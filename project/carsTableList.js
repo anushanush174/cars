@@ -30,10 +30,11 @@ let horsepower;
 let transmission;
 let clas;
 let editButton;
+let pageNum = 1;
 
-createTable(car.slice(0, notesOnPage));
+createTable(car.slice(0, notesOnPage), car);
 
-function createTable(cars) {
+function createTable(cars, list) {
     let title = document.createElement("tr");
 
     for (let i = 0; i < carModel.length; i++) {
@@ -75,12 +76,12 @@ function createTable(cars) {
     div.appendChild(table);
 
     divPagination.innerHTML = "";
-    createPagination();
+    createPagination(list);
     deleteRows();
 
     for (let i = 1; i < table.rows.length; i++) {
         table.rows[i].cells[carModel.length - 1].onclick = function () {
-            let editForm = document.getElementById("formEditCarID")
+            let editForm = document.getElementById("formEditCarID");
             if (editForm.style.display === "block") {
                 editForm.style.display = "none";
             } else {
@@ -90,8 +91,9 @@ function createTable(cars) {
     }
 }
 
-function createPagination() {
-    let amountPages = Math.ceil(car.length / notesOnPage);
+function createPagination(list) {
+    let amountPages = Math.ceil(list.length / notesOnPage);
+    let active = document.querySelector("#pagination li.active");
 
     let ul = document.createElement("ul");
     ul.setAttribute("id", "pagination");
@@ -100,25 +102,25 @@ function createPagination() {
     for (let i = 1; i <= amountPages; i++) {
         let li = document.createElement("li");
         li.innerHTML = i;
+        if (pageNum == i) {
+            li.classList.add("active");
+        }
         ul.appendChild(li);
         items.push(li);
     }
 
     for (let item of items) {
         item.addEventListener("click", function () {
-            let active = document.querySelector("#pagination li.active");
             if (active) {
                 active.classList.remove("active");
             }
-            this.classList.add("active");
 
-            let pageNum = +this.innerHTML;
-
+            pageNum = +this.innerHTML;
             pageStart = (pageNum - 1) * notesOnPage;
             pageEnd = pageStart + notesOnPage;
-            let notes = car.slice(pageStart, pageEnd);
+            let notes = list.slice(pageStart, pageEnd);
             table.innerHTML = "";
-            createTable(notes);
+            createTable(notes, list);
         })
     }
     divPagination.appendChild(ul);
@@ -133,8 +135,8 @@ function deleteRows() {
                 table.deleteRow(index);
                 car.splice(index - 1, 1);
                 localStorage.setItem("carList", JSON.stringify(car));
-                // table.innerHTML = "";
-                // createTable(car);
+                table.innerHTML = "";
+                createTable(car.slice(pageStart, pageEnd), car);
             }
         }
     }
@@ -148,19 +150,22 @@ function addRows() {
     transmission = document.getElementById("transmission");
     clas = document.getElementById("clas");
 
-    let newCar = {
-        Model: model.value,
-        Brand: brand.value,
-        Date: date.value,
-        Horsepower: horsepower.value,
-        Transmission: transmission.value,
-        Class: clas.value,
-    };
+    class CarModel {
+        constructor(Model, Brand, Date, Horsepower, Transmission, Class) {
+            this.Model = Model
+            this.Brand = Brand
+            this.Date = Date
+            this.Horsepower = Horsepower
+            this.Transmission = Transmission
+            this.Class = Class
+        }
+    }
+
+    let newCar = new CarModel(model.value, brand.value, date.value, horsepower.value, transmission.value, clas.value)
 
     car.unshift(newCar);
     table.innerHTML = "";
-    createTable(car.slice(0, notesOnPage));
-    document.getElementById("formAddCar").style.display = "none";
+    createTable(car.slice(0, notesOnPage), car);
 
     model.value = "";
     brand.value = "";
@@ -168,6 +173,8 @@ function addRows() {
     horsepower.value = "";
     transmission.value = "";
     clas.value = "";
+    
+    document.getElementById("formAddCar").style.display = "none";
 }
 
 function onDragStart(index, event) {
@@ -187,7 +194,7 @@ function dragAndDropArray(arr, arg1, arg2) {
     let del = arr.splice(arg1, 1).toString();
     arr.splice(arg2, 0, del);
     table.innerHTML = "";
-    createTable(car.slice(0, notesOnPage));
+    createTable(car.slice(0, notesOnPage), car);
 }
 
 function createRow() {
@@ -230,20 +237,28 @@ function saveEditedValues(index) {
 
     car[index] = editedModel;
     table.innerHTML = "";
-    createTable(car.slice(pageStart, pageEnd));
+    createTable(car.slice(pageStart, pageEnd), car);
     document.getElementById("formEditCarID").style.display = "none";
 }
 
 function searchIntoTable() {
-    let searchInput = document.getElementById("searchInputId")
-
-    let filteredCarList = car.filter(item => {
-        for (let obj in item) {
-            if(item[obj].toLowerCase().match(searchInput.value.toLowerCase())){
-                return true
+    let searchInput = document.getElementById("searchInputId");
+    let inputValue = searchInput.value.toLowerCase();
+    if (inputValue !== "delete" && inputValue !== "edit") {
+        let filteredCarList = car.filter(item => {
+            for (let obj in item) {
+                if (item[obj].toLowerCase().match(inputValue)) {
+                    return true;
+                }
             }
-        }
-    })
-    table.innerHTML = "";
-    createTable(filteredCarList.slice(pageStart, pageEnd))
+        })
+        table.innerHTML = "";
+        pageStart = 0;
+        pageEnd = notesOnPage;
+        pageNum = 1;
+        createTable(filteredCarList.slice(pageStart, pageEnd), filteredCarList);
+    } else {
+        table.innerHTML = "";
+        createTable(array = [], array = []);
+    }
 }

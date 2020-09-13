@@ -1,15 +1,10 @@
-body {
-    background-color: rgb(16, 15, 71);
-    background-position: center;
-  }
-
 .login-page{
   width: 360px;
   padding: 10% 0 0;
   margin: auto;
-}
-
-.form{
+  }
+  
+  .form{
   position: relative;
   z-index: 1;
   background: #dfdff5;
@@ -18,9 +13,9 @@ body {
   padding: 45px;
   text-align: center;
   
-}
-
-.form input{
+  }
+  
+  .form input{
   font-family: "Roboto", sans-serif;
   outline: 1;
   background: #e0dbdb;
@@ -30,9 +25,9 @@ body {
   padding: 15px;
   box-sizing: border-box;
   font-size: 20px;
-}
-
-.form button {
+  }
+  
+  .form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase ;
   outline: 0;
@@ -43,164 +38,132 @@ body {
   color: #c4c4c4;
   font-size: 14px;
   cursor: pointer;
-}
-
-.form button:hover,.form button:active{
+  }
+  
+  .form button:hover,.form button:active{
   background: #58528a; ;
-}
-
-.form .message :hover{
+  }
+  
+  .form .message :hover{
   background: #e0dbdb;
-}
-
-input:invalid {
+  }
+  
+  input:invalid {
   background-color: #ffdddd;
-}
-
-input:valid {
+  }
+  
+  input:valid {
   background-color: #e0dbdb;
-}
-
-table{
+  }
+  
+  body {
+  background-color: rgb(16, 15, 71);
+  background-position: center;
+  }
+  
+  table{
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   text-align: center;
   border-collapse: collapse;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-}
-
-th, td:first-child{
+  width: 100%;
+  }
+  
+  th, td:first-child{
   font-weight: bold;
   background-color: #494474;
   padding: 15px 2px;
   color: #fff;
-} 
-
-td{
+  } 
+  
+  td{
   background-color: #58528a;
-}
-
-td, th{
+  }
+  
+  td, th{
   border-style: solid;
   border-width: 0 2px 2px 0 ;
   border-color: #fff;
-}
-
-#pagination {
+  }
+  
+  #pagination {
   display: flex;
   padding: 0;
   list-style-type: none;
-}
-
-#pagination li {
+  }
+  
+  #pagination li {
   margin-right: 5px;
   padding: 10px;
   border: 1px solid white;
   color: white;
-}
-
-#pagination li:hover, #pagination li.active{
+  }
+  
+  #pagination li:hover, #pagination li.active{
   cursor: pointer;
   color: red;
   border: 1px solid red
-}
-
-
-body {
-  background-color: rgb(16, 15, 71);
-  background-position: center;
-}
-
-
-table{
-font-family: "Roboto", sans-serif;
-font-size: 18px;
-text-align: center;
-border-collapse: collapse;
-align-items: center;
-justify-content: center;
-min-height: 100vh;
-}
-
-th, td:first-child{
-font-weight: bold;
-background-color: #494474;
-padding: 15px 2px;
-color: #fff;
-} 
-
-td{
-background-color: #58528a;
-}
-
-td, th{
-border-style: solid;
-border-width: 0 2px 2px 0 ;
-border-color: #fff;
-}
-
-#pagination {
-display: flex;
-padding: 0;
-list-style-type: none;
-}
-
-#pagination li {
-margin-right: 5px;
-padding: 10px;
-border: 1px solid white;
-color: white;
-}
-
-#pagination li:hover, #pagination li.active{
-cursor: pointer;
-color: red;
-border: 1px solid red
-}
-
-#formAddCar{
-display: none;
-width:100%;
-overflow:hidden;
-}
-
-#formEditCarID{
-display: none;
-width:100%;
-overflow:hidden;
-}
-
-#tableDiv{
-width:100%;
-overflow:hidden;
-margin: 0 auto;
-}
-
-input {
-padding: 30px;
-}
-
-form{
-text-align: center;
-}
-
-div
-{
+  }
+  
+  #formAddCar{
+  display: none;
+  width:100%;
+  overflow:hidden;
+  }
+  
+  #formEditCarID{
+  display: none;
+  width:100%;
+  overflow:hidden;
+  }
+  
+  #tableDiv{
+  width:100%;
+  overflow:hidden;
+  margin: 0 auto;
+  }
+  
+  input {
+  padding: 30px;
+  }
+  
+  form{
+  text-align: center;
+  }
+  
+  div
+  {
   border: 1px solid rgb(0, 1, 73);
-}
-
-#right
-{
+  }
+  
+  #right
+  {
   background-color: rgb(130, 150, 216);
   float: right;
   width: 64%;
-}
-
-#left
-{
+  }
+  
+  #left
+  {
   background-color: rgb(130, 150, 216);
   float: left;
   width: 35%;
-}
+  }
+
+  #searchInputId{
+    width: 50%;
+  }
+
+  #searchButtonId{
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    transition-duration: 0.4s;
+  }
+
+  #searchButtonId:hover {
+    background-color: #555555;
+    color: white;
+  }
