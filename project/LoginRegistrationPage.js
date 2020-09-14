@@ -99,12 +99,38 @@ const translateControls = document.querySelectorAll("[data-language]");
 const getLanguage = document.getElementById("languageId");
 getLanguage.addEventListener("change", event => getSelectedLanguages(event.target.value))
 
-function getSelectedLanguages(val) {
-    import(`./${val}.js`).then(item => {
-        translateControls.forEach(x => {
-            x.placeholder = item.default[x.dataset.language]
-            x.innerText = item.default[x.dataset.language]
-        })
-    })
+// function getSelectedLanguages(val) {
+//     import(`./${val}.js`).then(item => {
+//         translateControls.forEach(x => {
+//             x.placeholder = item.default[x.dataset.language]
+//             x.innerText = item.default[x.dataset.language]
+//         })
+//     })
+// }
+
+let val = engLang;
+
+class Language {
+    constructor () {
+        if (!Language.instance) {
+            Language.instance = this;
+        };
+
+        changeLang() {
+            return import(`./${val}.js`).then(item => {
+
+                translateControls.forEach(x => {
+                    x.placeholder = item.default[x.dataset.language]
+                    x.innerText = item.default[x.dataset.language]
+                })
+            })
+        }
+    }
 }
+
+
+    const newLang = new Language();
+
+
+
 
