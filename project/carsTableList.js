@@ -32,7 +32,31 @@ let clas;
 let editButton;
 let pageNum = 1;
 
-createTable(car.slice(0, notesOnPage), car);
+class Observable {
+    constructor() {
+        this.handlers = [];
+    }
+
+    subscribe(fn) {
+        this.handlers.push(fn);
+    }
+ 
+    run() {
+        this.handlers.forEach(item => {
+            console.log(item)
+            item();
+        })
+    }
+}
+
+let observable = new Observable();
+observable.subscribe( () => {
+    createTable(car.slice(0, notesOnPage), car)
+})
+
+ observable.run()
+
+//createTable(car.slice(0, notesOnPage), car);
 
 function createTable(cars, list) {
     let title = document.createElement("tr");
